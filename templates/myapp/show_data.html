@@ -1,0 +1,28 @@
+<h1>Add Students </h1>
+<form method="post" action="">
+ {% csrf_token %}
+{{form.as_p}}
+<input type="submit" value="Add"/>
+</form>
+
+<table width="100%" border="2px solid black">
+    <tr>
+        <th>ID </th>
+        <th>Name </th>
+        <th>Email </th>
+        <th>Age </th>
+        <th> Action</th>
+    </tr>
+    {% for std in students %}
+    <tr>
+        <td>{{std.id}}</td>
+        <td>{{std.name}}</td>
+        <td>{{std.email}}</td>
+        <td>{{std.age}}</td>
+        <td>
+            <a href="{% url 'delete_data' std.id %}"> Delete </a>
+            <a href="{% url 'update_data' std.id %}"> Edit </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
